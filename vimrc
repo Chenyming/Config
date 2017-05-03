@@ -1,0 +1,268 @@
+"==========================================
+" Author:  chenyuming
+" Email: cym8677@gmail.com
+" ReadMe: README.md
+" Last_modify: 2016-10-07
+"==========================================
+
+set nocompatible               " Be iMproved
+
+"=============================================================
+"Genegal Setting
+"=============================================================
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'Raimondi/delimitMate'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-scripts/ZoomWin'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mileszs/ack.vim'
+"Plugin 'vim-scripts/YankRing.vim'
+"Plugin 'aceofall/gtags.vim'
+
+call vundle#end()
+filetype plugin indent on
+
+"=============================================================
+"Genegal Setting
+"=============================================================
+syntax on
+filetype plugin indent on
+
+set nocompatible               " Be iMproved
+set autoindent
+set shiftwidth=4
+set nobackup
+set nowritebackup
+set noswapfile
+set cino=l1  "switch case indent
+set ff=unix
+set history=100
+set showcmd
+set backupdir=~/vimtmp,.
+set directory=~/vimtmp,.
+
+set incsearch
+set hlsearch
+set fileformat=unix
+set expandtab
+set tabstop=4
+set softtabstop=4
+set go=m
+set number
+set relativenumber
+set backspace=indent,eol,start
+set ignorecase smartcase
+set vb t_vb=
+au GuiEnter * set vb t_vb=
+
+if has ("gui_running")
+    colorscheme happy_hacking
+    "au GUIEnter * simalt ~x
+endif
+
+cd $VIM
+nmap <leader>cd :cd %:h<cr>
+nmap <leader>nh :nohl<cr>
+
+set guioptions-=m  "remove menu bar  
+set guioptions-=T  "remove toolbar
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set default encoding to utf-8 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has ('win32')
+    set encoding=utf-8
+    set termencoding=utf-8
+    set fileencoding=chinese
+    set fileencodings=ucs-bom,utf-8,chinese
+    set langmenu=zh_CN.utf-8
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+    language messages zh_cn.utf-8
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists('$TMUX')
+  set term=screen-256color
+endif
+
+if has("gui_running")
+    if has('win32')
+        set guifont=Anonymice_Powerline:h15:cANSI
+    else
+        set guifont=Anonymous\ Pro\ for\ Powerline\ 15
+    endif
+else
+    set t_Co=256
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Plugin configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Ack
+let g:ackprg = 'ag --vimgrep'
+
+"Ctrl-P
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+            \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+            \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+            \}
+
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'rw'
+
+" Use a leader instead of the actual named binding
+nmap <leader>p :CtrlP<cr>
+
+" Easy bindings for its various modes
+nmap <leader>be :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+nmap <leader>bb :CtrlPBookmarkDir<cr>
+
+
+"=======================================================
+"Airline config
+"=======================================================
+if has("gui_running")
+    let g:airline_theme="luna" 
+else
+    let g:airline_theme="zenburn"
+    let g:airline_theme="solarized"
+endif
+let g:airline_powerline_fonts = 1   
+set laststatus=2
+
+"==========================================
+"NerdTree config
+"==========================================
+map <F2> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd StdinReadPre * let s:std_in=1
+
+"==========================================
+"YouCompleteMe config
+"==========================================
+noremap <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+:nmap <leader>gf :YcmCompleter GoToDefinition<CR>
+:nmap <leader>gd :YcmCompleter GoToDeclaration<CR>
+
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_min_num_identifier_candidate_chars = 0
+let g:ycm_auto_trigger = 1
+"let g:ycm_filetype_blacklist = {}
+
+let ycm_add_preview_to_completeopt = 0
+set completeopt-=preview
+let g:ycm_complete_in_comments = 1
+
+" diagnostic setting
+let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_error_symbol = '*'
+"let g:ycm_enable_diagnostic_signs = 0
+"let g:ycm_enable_diagnostic_highlighting = 0
+"let g:ycm_echo_current_diagnostic = 0
+"let g:ycm_open_loclist_on_ycm_diags = 1
+
+" updatetime = 2000
+"let g:ycm_allow_changing_updatetime = 1
+"let g:ycm_complete_in_strings = 1
+"let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+" identifier from tag file
+"let g:ycm_collect_identifiers_from_tags_files = 0
+
+" identifier from C language
+let g:ycm_seed_identifiers_with_syntax = 1
+
+"==========================================
+"ultisnips config
+"==========================================
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
+"==========================================
+"Gtags config
+"==========================================
+":nmap <leader>gc :cclose<CR>
+":nmap <leader>gt :Gtags<SPACE>
+":nmap <leader>gf :Gtags -f %<CR>
+":nmap <leader>gg :GtagsCursor<CR>
+":nmap <leader>gn :cn<CR>
+":nmap <leader>gp :cp<CR>
+
+"set cscopetag
+"let Gtags_Auto_Update = 1
+"let GtagsCscope_Auto_Load = 1
+"let GtagsCscope_Keep_Alive = 1
+
+"==========================================
+"Buffer config
+"==========================================
+noremap <c-k> <c-w>k
+noremap <c-j> <c-w>j
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
+
+:nmap <leader>w= :vertical resize +
+:nmap <leader>w- :vertical resize -
+:nmap <leader>w. :resize +
+:nmap <leader>w, :resize -
+
+
+"==========================================
+"a.vim config
+"==========================================
+:nmap <F4> :A<CR>
+
+
+"==========================================
+"rainbow_parentheses
+"==========================================
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+"==========================================
+"mark config
+"==========================================
+:nmap <leader>mk :mark<SPACE>
+:nmap <leader>mg :'
+:nmap <leader>md :delmarks!<CR>
+
+
+"==========================================
+"register copy config
+"==========================================
+vmap <c-c> "+y
+vmap <c-v> "+p
+imap <c-v> <ESC>"+p
+
+
+"==========================================
+"Multi cursor config
+"==========================================
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-m>'
+let g:multi_cursor_skip_key='<C-k>'
+let g:multi_cursor_quit_key='<Esc>'
