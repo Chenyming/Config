@@ -104,7 +104,8 @@ if has("gui_running")
     if has('win32')
         set guifont=Anonymice_Powerline:h15:cANSI
     else
-        set guifont=Anonymous\ Pro\ for\ Powerline\ 15
+        "set guifont=Anonymous\ Pro\ for\ Powerline\ 15
+        set guifont=Monaco\ for\ Powerline\ 12
     endif
 else
     set t_Co=256
