@@ -1,0 +1,19 @@
+[user]
+	email = chenym0320@thundersoft.com
+	name = chenym0320
+
+[alias]
+    st = status
+    ci = commint
+    co = checkout
+    br = branch
+    last = log -1 HEAD
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[color]
+	ui = auto
+[oh-my-zsh]
+    hide-status = 1
+    hide-dirty = 1

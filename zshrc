@@ -100,8 +100,6 @@ bindkey '^N' history-search-forward
 
 setopt AUTO_CD
 
-alias hp=http_proxy=http://localhost:8123
-
 # autojump install
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
