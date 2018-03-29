@@ -29,6 +29,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'mileszs/ack.vim'
+Plugin 'vim-jp/vim-cpp'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'jeaye/color_coded'
 "Plugin 'vim-scripts/YankRing.vim'
 "Plugin 'aceofall/gtags.vim'
 
@@ -47,12 +50,14 @@ set shiftwidth=4
 set nobackup
 set nowritebackup
 set noswapfile
-set cino=l1  "switch case indent
+set cino=N-s  "switch case indent
 set ff=unix
 set history=100
 set showcmd
 set backupdir=~/vimtmp,.
 set directory=~/vimtmp,.
+set cindent
+set cinoptions=g+1
 
 set incsearch
 set hlsearch
