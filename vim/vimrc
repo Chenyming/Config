@@ -15,8 +15,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
@@ -24,6 +22,7 @@ Plugin 'dkprice/vim-easygrep'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/ZoomWin'
+Plugin 'vim-scripts/a.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
@@ -32,6 +31,10 @@ Plugin 'mileszs/ack.vim'
 Plugin 'vim-jp/vim-cpp'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'jeaye/color_coded'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'altercation/vim-colors-solarized'
 "Plugin 'vim-scripts/YankRing.vim'
 "Plugin 'aceofall/gtags.vim'
 
@@ -74,7 +77,8 @@ set vb t_vb=
 au GuiEnter * set vb t_vb=
 
 if has ("gui_running")
-    colorscheme happy_hacking
+    "colorscheme happy_hacking
+    colorscheme solarized
     "au GUIEnter * simalt ~x
 endif
 
@@ -272,3 +276,9 @@ let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-m>'
 let g:multi_cursor_skip_key='<C-k>'
 let g:multi_cursor_quit_key='<Esc>'
+
+"==========================================
+"solarized cinfig
+"==========================================
+set background=dark
+let g:solarized_termcolors=256
