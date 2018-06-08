@@ -16,7 +16,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'Raimondi/delimitMate'
@@ -31,10 +30,13 @@ Plugin 'mileszs/ack.vim'
 Plugin 'vim-jp/vim-cpp'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'jeaye/color_coded'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'Shougo/denite.nvim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'itchyny/lightline.vim'
+"Plugin 'vim-airline/vim-airline'
+"#Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'vim-scripts/YankRing.vim'
 "Plugin 'aceofall/gtags.vim'
 
@@ -74,6 +76,7 @@ set relativenumber
 set backspace=indent,eol,start
 set ignorecase smartcase
 set vb t_vb=
+set autoread
 au GuiEnter * set vb t_vb=
 
 if has ("gui_running")
@@ -114,7 +117,7 @@ if has("gui_running")
         set guifont=Anonymice_Powerline:h15:cANSI
     else
         "set guifont=Anonymous\ Pro\ for\ Powerline\ 15
-        set guifont=Monaco\ for\ Powerline\ 12
+        set guifont=Monaco\ 12
     endif
 else
     set t_Co=256
@@ -278,7 +281,16 @@ let g:multi_cursor_skip_key='<C-k>'
 let g:multi_cursor_quit_key='<Esc>'
 
 "==========================================
-"solarized cinfig
+"solarized config
 "==========================================
 set background=dark
 let g:solarized_termcolors=256
+
+
+"==========================================
+"lightline config
+"==========================================
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }

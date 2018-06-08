@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/chen/.oh-my-zsh
+export ZSH=/home/chen/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -91,7 +91,7 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="vim"
 bindkey -v 
- 
+
 # vi style incremental search
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
@@ -103,3 +103,22 @@ setopt AUTO_CD
 # autojump install
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
+
+# configure pet
+
+function prev() {
+    PREV=$(fc -lrn | head -n 1)
+    sh -c "pet new `printf %q "$PREV"`"
+}
+
+function pet-select() {
+    BUFFER=$(pet search --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle redisplay
+}
+
+zle -N pet-select
+stty -ixon
+bindkey '^s' pet-select
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
