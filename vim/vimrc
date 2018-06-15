@@ -35,6 +35,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'Shougo/denite.nvim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'itchyny/lightline.vim'
+Plugin 'rhysd/vim-clang-format'
 "Plugin 'vim-airline/vim-airline'
 "#Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'vim-scripts/YankRing.vim'
@@ -294,3 +295,21 @@ set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ }
+
+
+"==========================================
+"clang-format config
+"==========================================
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11",
+            \ "BreakBeforeBraces" : "Stroustrup"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+autocmd FileType c ClangFormatAutoEnable
