@@ -1,0 +1,14 @@
+#  frps unit file
+#  autor:chenyuming
+#  email:cym8677@gmail.com
+
+[Unit]
+Description=frps daemon
+
+[Service]
+Type=simple
+ExecStart=-/bin/frps -c /home/chen/.frp/frps.ini
+
+[Install]
+WantedBy=multi-user.target
+
