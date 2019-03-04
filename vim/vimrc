@@ -56,7 +56,7 @@ set shiftwidth=4
 set nobackup
 set nowritebackup
 set noswapfile
-set cino=N-s  "switch case indent
+"set cino=N-s  "switch case indent
 set ff=unix
 set history=100
 set showcmd
@@ -174,6 +174,7 @@ autocmd StdinReadPre * let s:std_in=1
 "==========================================
 "YouCompleteMe config
 "==========================================
+
 noremap <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 :nmap <leader>gf :YcmCompleter GoToDefinition<CR>
 :nmap <leader>gd :YcmCompleter GoToDeclaration<CR>
@@ -312,4 +313,5 @@ autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
-autocmd FileType c ClangFormatAutoEnable
+"autocmd FileType c ClangFormatAutoEnable
+let g:clang_format#detect_style_file = 1
