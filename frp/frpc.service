@@ -1,0 +1,14 @@
+#  ngrokd unit file
+#  autor:chenyuming
+#  email:cym8677@gmail.com
+
+[Unit]
+Description=frpc client
+
+[Service]
+Type=simple
+ExecStart=-/bin/frpc -c /home/chen/.frp/frpc.ini
+
+[Install]
+WantedBy=multi-user.target
+
